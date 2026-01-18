@@ -6,13 +6,11 @@ export async function POST(req) {
   if (username === "Asim@111" && password === "Asim@111") {
     const res = NextResponse.json({ success: true });
 
-    res.cookies.set({
-      name: "admin-auth",
-      value: "true",
+    res.cookies.set("admin-auth", "true", {
       httpOnly: true,
+      secure: true,        // REQUIRED on Vercel
+      sameSite: "lax",     // ✅ FIX (NOT none)
       path: "/",
-      secure: true,        // 🔥 Vercel = HTTPS
-      sameSite: "none",    // 🔥 REQUIRED for middleware
       maxAge: 60 * 60 * 24,
     });
 

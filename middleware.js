@@ -8,12 +8,10 @@ export function middleware(request) {
   }
 
   if (pathname.startsWith("/admin")) {
-    const authCookie = request.cookies.get("admin-auth")?.value;
+    const authCookie = request.cookies.get("admin-auth");
 
     if (!authCookie) {
-      return NextResponse.redirect(
-        new URL("/admin/login", request.url)
-      );
+      return NextResponse.redirect(new URL("/admin/login", request.url));
     }
   }
 
