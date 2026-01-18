@@ -9,10 +9,10 @@ export async function POST(req) {
     res.cookies.set({
       name: "admin-auth",
       value: "true",
-      path: "/",
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production", // 🔥 FIX
+      path: "/",
+      secure: true,        // 🔥 Vercel = HTTPS
+      sameSite: "none",    // 🔥 REQUIRED for middleware
       maxAge: 60 * 60 * 24,
     });
 
