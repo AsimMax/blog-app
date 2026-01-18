@@ -4,12 +4,12 @@ export async function POST(req) {
   const { username, password } = await req.json();
 
   if (username === "Asim@111" && password === "Asim@111") {
-    const res = NextResponse.json({ success: true });
+    const res = NextResponse.redirect(new URL("/admin", req.url));
 
     res.cookies.set("admin-auth", "true", {
       httpOnly: true,
-      secure: true,        // REQUIRED on Vercel
-      sameSite: "lax",     // ✅ FIX (NOT none)
+      secure: true,
+      sameSite: "lax",
       path: "/",
       maxAge: 60 * 60 * 24,
     });

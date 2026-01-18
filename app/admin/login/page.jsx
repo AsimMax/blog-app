@@ -10,37 +10,44 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    if (!username || !password) {
-      alert("Please enter username and password");
+  if (!username || !password) {
+    alert("Please enter username and password");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    // If server redirects, follow it
+    if (res.redirected) {
+      window.location.href = res.url;
       return;
     }
 
-    setLoading(true);
+    const data = await res.json();
 
-    try {
-      const res = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      if (data.success) {
-        router.push("/admin");
-      } else {
-        alert(data.message || "Invalid credentials");
-      }
-    } catch (error) {
-      alert(error.message || "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error(data.message || "Login failed");
     }
-  };
+
+    if (data.success) {
+      router.push("/admin");
+    } else {
+      alert(data.message || "Invalid credentials");
+    }
+  } catch (error) {
+    alert(error.message || "Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="h-screen flex items-center justify-center">
