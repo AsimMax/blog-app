@@ -7,20 +7,28 @@ export default function AdminLogin() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Added loading state
 
   const handleLogin = async () => {
-    const res = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      router.push("/admin");
-    } else {
-      alert("Invalid credentials");
+      if (data.success) {
+        router.push("/admin");
+      } else {
+        alert(data.message || "Invalid credentials");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,13 +55,12 @@ export default function AdminLogin() {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-black text-white py-2"
+          disabled={loading} // Disable button while loading
+          className={`w-full py-2 ${loading ? 'bg-gray-400' : 'bg-black text-white'}`}
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
       </div>
     </div>
   );
 }
-
-
