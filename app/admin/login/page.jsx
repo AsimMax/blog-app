@@ -8,16 +8,21 @@ export default function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    // 🔒 hardcoded credentials (change later)
-    if (username === "Asim@111" && password === "Asim@111") {
-      document.cookie = "admin-auth=true; path=/";
-      router.push("/admin");
-    } else {
-      alert("Invalid credentials");
-    }
-  };
+  const handleLogin = async () => {
+  const res = await fetch("/api/admin/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
 
+  const data = await res.json();
+
+  if (data.success) {
+    router.push("/admin");
+  } else {
+    alert("Invalid credentials");
+  }
+};
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="border p-8 shadow-md w-80">
