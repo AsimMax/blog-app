@@ -10,7 +10,7 @@ export default function AdminLogin() {
 
   const handleLogin = () => {
     // 🔒 hardcoded credentials (change later)
-    if (username === "admin" && password === "1234") {
+    if (username === "Asim@111" && password === "Asim@111") {
       document.cookie = "admin-auth=true; path=/";
       router.push("/admin");
     } else {
