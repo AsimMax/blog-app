@@ -50,34 +50,37 @@ export default function AdminLogin() {
 
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="border p-8 shadow-md w-80">
-        <h2 className="text-xl font-bold mb-4 text-center">Admin Login</h2>
+    <div className="h-screen flex items-center justify-center px-4">
+  <div className="border p-6 sm:p-8 shadow-md w-full max-w-sm rounded-lg">
+    <h2 className="text-xl font-bold mb-4 text-center">Admin Login</h2>
 
-        <input
-          value={username}
-          type="text"
-          placeholder="Username"
-          className="border w-full mb-3 p-2"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <input
+      value={username}
+      type="text"
+      placeholder="Username"
+      className="border w-full mb-3 p-3 rounded-md"
+      onChange={(e) => setUsername(e.target.value)}
+    />
 
-        <input
-          value={password}
-          type="password"
-          placeholder="Password"
-          className="border w-full mb-4 p-2"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <input
+      value={password}
+      type="password"
+      placeholder="Password"
+      className="border w-full mb-4 p-3 rounded-md"
+      onChange={(e) => setPassword(e.target.value)}
+    />
 
-        <button
-          onClick={handleLogin}
-          disabled={loading}
-          className={`w-full py-2 ${loading ? "bg-gray-400" : "bg-black text-white"}`}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </div>
-    </div>
+    <button
+      onClick={handleLogin}
+      disabled={loading}
+      className={`w-full py-3 rounded-md ${
+        loading ? "bg-gray-400" : "bg-black text-white"
+      }`}
+    >
+      {loading ? "Logging in..." : "Login"}
+    </button>
+  </div>
+</div>
+
   );
 }
