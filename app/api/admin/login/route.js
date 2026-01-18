@@ -12,12 +12,15 @@ export async function POST(req) {
       path: "/",
       httpOnly: true,
       sameSite: "lax",
-      secure: true,
-      maxAge: 60 * 60 * 24, // 1 day
+      secure: process.env.NODE_ENV === "production", // 🔥 FIX
+      maxAge: 60 * 60 * 24,
     });
 
     return res;
   }
 
-  return NextResponse.json({ success: false }, { status: 401 });
+  return NextResponse.json(
+    { success: false, message: "Invalid credentials" },
+    { status: 401 }
+  );
 }
