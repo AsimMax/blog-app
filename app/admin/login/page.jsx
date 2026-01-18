@@ -9,26 +9,28 @@ export default function AdminLogin() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-  const res = await fetch("/api/admin/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  });
+    const res = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (data.success) {
-    router.push("/admin");
-  } else {
-    alert("Invalid credentials");
-  }
-};
+    if (data.success) {
+      router.push("/admin");
+    } else {
+      alert("Invalid credentials");
+    }
+  };
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="border p-8 shadow-md w-80">
         <h2 className="text-xl font-bold mb-4 text-center">Admin Login</h2>
 
         <input
+          value={username}
           type="text"
           placeholder="Username"
           className="border w-full mb-3 p-2"
@@ -36,6 +38,7 @@ export default function AdminLogin() {
         />
 
         <input
+          value={password}
           type="password"
           placeholder="Password"
           className="border w-full mb-4 p-2"
@@ -52,4 +55,5 @@ export default function AdminLogin() {
     </div>
   );
 }
+
 
