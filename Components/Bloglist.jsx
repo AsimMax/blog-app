@@ -24,39 +24,42 @@ const Bloglist = () => {
 
   return (
     <div>
-      <div className="flex justify-center gap-6 my-10">
-        {["All", "Technology", "Startup", "Lifestyle"].map((item) => (
-          <button
-            key={item}
-            onClick={() => setMenu(item)}
-            className={
-              menu === item
-                ? "bg-black text-white py-1 px-4 rounded-sm"
-                : ""
-            }
-          >
-            {item}
-          </button>
-        ))}
-      </div>
+  {/* Category Filter */}
+  <div className="flex flex-wrap justify-center gap-2 sm:gap-6 my-6 sm:my-10 px-3">
+    {["All", "Technology", "Startup", "Lifestyle"].map((item) => (
+      <button
+        key={item}
+        onClick={() => setMenu(item)}
+        className={`px-3 py-1 text-sm sm:text-base rounded-sm border transition ${
+          menu === item
+            ? "bg-black text-white border-black"
+            : "border-gray-300 hover:bg-gray-100"
+        }`}
+      >
+        {item}
+      </button>
+    ))}
+  </div>
 
-      <div className="flex flex-wrap justify-around gap-1 gap-y-10 mb-16 xl:mx-24">
-        {blogs
-          .filter((item) =>
-            menu === "All" ? true : item.category === menu
-          )
-          .map((item) => (
-            <Blogitem
-              key={item._id}
-              id={item._id}
-              image={item.image}
-              title={item.title}
-              description={item.description}
-              category={item.category}
-            />
-          ))}
-      </div>
-    </div>
+  {/* Blog Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 mb-16 px-4 xl:px-24">
+    {blogs
+      .filter((item) =>
+        menu === "All" ? true : item.category === menu
+      )
+      .map((item) => (
+        <Blogitem
+          key={item._id}
+          id={item._id}
+          image={item.image}
+          title={item.title}
+          description={item.description}
+          category={item.category}
+        />
+      ))}
+  </div>
+</div>
+
   );
 };
 

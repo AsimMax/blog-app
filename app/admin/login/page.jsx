@@ -50,15 +50,17 @@ export default function AdminLogin() {
 
 
   return (
-    <div className="h-screen flex items-center justify-center px-4">
-  <div className="border p-6 sm:p-8 shadow-md w-full max-w-sm rounded-lg">
-    <h2 className="text-xl font-bold mb-4 text-center">Admin Login</h2>
+    <div className="min-h-screen flex items-center justify-center px-3 sm:px-4 bg-gray-50">
+  <div className="w-full max-w-sm border p-5 sm:p-8 shadow-md rounded-lg bg-white">
+    <h2 className="text-lg sm:text-xl font-bold mb-5 text-center">
+      Admin Login
+    </h2>
 
     <input
       value={username}
       type="text"
       placeholder="Username"
-      className="border w-full mb-3 p-3 rounded-md"
+      className="border w-full mb-3 px-3 py-2 sm:py-3 rounded-md outline-none focus:ring-1 focus:ring-black"
       onChange={(e) => setUsername(e.target.value)}
     />
 
@@ -66,15 +68,17 @@ export default function AdminLogin() {
       value={password}
       type="password"
       placeholder="Password"
-      className="border w-full mb-4 p-3 rounded-md"
+      className="border w-full mb-4 px-3 py-2 sm:py-3 rounded-md outline-none focus:ring-1 focus:ring-black"
       onChange={(e) => setPassword(e.target.value)}
     />
 
     <button
       onClick={handleLogin}
       disabled={loading}
-      className={`w-full py-3 rounded-md ${
-        loading ? "bg-gray-400" : "bg-black text-white"
+      className={`w-full py-2.5 sm:py-3 rounded-md transition active:scale-95 ${
+        loading
+          ? "bg-gray-400 cursor-not-allowed"
+          : "bg-black text-white"
       }`}
     >
       {loading ? "Logging in..." : "Login"}

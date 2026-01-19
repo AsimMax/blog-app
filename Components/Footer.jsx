@@ -3,15 +3,25 @@ import Image from 'next/image'
 import { assets } from '@/Assets/assets'
 const Footer = () => {
   return (
-    <div className='flex justify-around flex-col gap-2 sm:gap-0 sm:flex-row bg-black py-5 items-center'>
-    <Image src={assets.logo_light} alt="logo" width={120}/> 
-    <p className='text-sm text-white'>All rights reserved. Copyright @blogger</p> 
-    <div className="flex">
-        <Image src={assets.facebook_icon} alt="facebook" width={40}></Image>
-        <Image src={assets.twitter_icon} alt="twitter" width={40}></Image>
-        <Image src={assets.googleplus_icon} alt="googleplus" width={40}></Image>
-    </div>
-    </div>
+   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0 bg-black py-4 sm:py-5 px-4">
+  <Image
+    src={assets.logo_light}
+    alt="logo"
+    width={120}
+    className="w-24 sm:w-32"
+  />
+
+  <p className="text-xs sm:text-sm text-white text-center">
+    All rights reserved. © Blogger
+  </p>
+
+  <div className="flex gap-3">
+    <Image src={assets.facebook_icon} alt="facebook" width={32} />
+    <Image src={assets.twitter_icon} alt="twitter" width={32} />
+    <Image src={assets.googleplus_icon} alt="googleplus" width={32} />
+  </div>
+</div>
+
   )
 }
 

@@ -52,15 +52,21 @@ const page = () => {
 
   return (
     <>
-        <form onSubmit={onSubmitHandler} className="pt-5 px-4 sm:pt-12 sm:px-5 sm:pl-16">
-  <p className="text-xl">Upload Thumbnail</p>
+    <form
+  onSubmit={onSubmitHandler}
+  className="pt-4 px-3 sm:pt-12 sm:px-5 sm:pl-16"
+>
+  <p className="text-lg sm:text-xl font-medium">Upload Thumbnail</p>
 
-  <label htmlFor="image">
+  <label
+    htmlFor="image"
+    className="block mt-3 w-fit cursor-pointer"
+  >
     <Image
-      className="mt-4"
+      className="rounded border max-w-full h-auto"
       src={!image ? assets.upload_area : URL.createObjectURL(image)}
-      width={140}
-      height={70}
+      width={180}
+      height={100}
       alt="Upload Area"
     />
   </label>
@@ -73,34 +79,36 @@ const page = () => {
     required
   />
 
-  <p className="text-xl mt-4">Blog Title</p>
+  <p className="text-lg sm:text-xl mt-4 font-medium">Blog Title</p>
   <input
     name="title"
     onChange={onChangeHandler}
     value={data.title}
-    className="w-full sm:max-w-2xl mt-4 px-4 py-3 border"
+    className="w-full sm:max-w-2xl mt-2 px-3 py-2 sm:py-3 border rounded outline-none"
     type="text"
     placeholder="Type here"
     required
   />
 
-  <p className="text-xl mt-4">Blog Description</p>
+  <p className="text-lg sm:text-xl mt-4 font-medium">
+    Blog Description
+  </p>
   <textarea
     name="description"
     onChange={onChangeHandler}
     value={data.description}
-    className="w-full sm:max-w-2xl mt-4 px-4 py-3 border"
+    className="w-full sm:max-w-2xl mt-2 px-3 py-2 sm:py-3 border rounded outline-none"
     placeholder="Write content here"
-    rows={6}
+    rows={5}
     required
   />
 
-  <p className="text-xl mt-4">Blog Category</p>
+  <p className="text-lg sm:text-xl mt-4 font-medium">Blog Category</p>
   <select
     name="category"
     onChange={onChangeHandler}
     value={data.category}
-    className="w-full sm:w-40 mt-4 px-4 py-3 border text-gray-500"
+    className="w-full sm:w-48 mt-2 px-3 py-2 sm:py-3 border rounded text-gray-600"
   >
     <option value="Startup">Startup</option>
     <option value="Technology">Technology</option>
@@ -109,7 +117,7 @@ const page = () => {
 
   <button
     type="submit"
-    className="mt-8 w-full sm:w-40 h-12 bg-black text-white"
+    className="mt-6 w-full sm:w-40 h-11 sm:h-12 bg-black text-white rounded active:scale-95 transition"
   >
     ADD
   </button>
